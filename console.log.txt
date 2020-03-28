@@ -1,5 +1,0 @@
-CRITICAL:root:ERROR! No file found in ./../Dataset/Ml-100k/data.csv
-CRITICAL:root:ERROR! No file found in ./../Dataset/Ml-100k/data.csv
-CRITICAL:root:ERROR! No file found in ./../Dataset/Ml-100k/data.csv
-CRITICAL:root:ERROR! No file found in ./Dataset/Ml-100k/data.csv
-CRITICAL:root:ERROR! No file found in ./Dataset/Ml100k/data.csv
