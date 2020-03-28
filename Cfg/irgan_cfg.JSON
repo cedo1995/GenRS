@@ -1,0 +1,21 @@
+{
+  "use_gpu" : true,
+  "params_g" : null,
+  "params_d" : null,
+  "latent_factor" : 16,
+  "temp_factor": 0.2,
+  "lambda_gen" : 0,
+  "lambda_dis" : 0.1,
+  "init_delta" : 0.05,
+  "lr_g" : 0.001,
+  "lr_d" : 0.001,
+  "n_epochs" : 2,
+  "n_epochs_d": 100,
+  "n_epochs_g": 50,
+  "reg_g" : 0.001,
+  "reg_d" : 0,
+  "batch_size" : 16,
+  "opt_g" : "GradientDescentOptimizer",
+  "opt_d" : "GradientDescentOptimizer",
+  "dis_tr_path": "./dis-train.txt"
+}
