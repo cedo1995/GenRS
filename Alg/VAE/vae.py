@@ -2,7 +2,7 @@ import os
 import shutil
 
 from scipy import sparse
-from alg import Alg
+from Alg.alg import Alg
 import numpy as np
 import bottleneck as bn
 import tensorflow as tf

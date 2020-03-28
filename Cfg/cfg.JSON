@@ -9,7 +9,7 @@
   "test_it_prop" : 0.6,
   "algos": ["vae", "dae"],
   "names": ["user_id","item_id","rating"],
-  "path" : "./../Dataset/Ml100k/data.csv",
+  "path" : "./../Dataset/Ml-100k/data.csv",
   "sep": "\t",
   "preproc_data": true,
   "create_tr_val_test": true,
