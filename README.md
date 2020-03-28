@@ -12,9 +12,9 @@ A generative learning-based Framework for Recommendation Systems algorithms
 # Algorithms list available:
 - [CFGAN](https://dl.acm.org/doi/pdf/10.1145/3269206.3271743?casa_token=INiS3p2UrDAAAAAA:EQRrS7IBusVt_F8IYiAUtsIGGHHd17ki69QEcNkJwFkq5PuiBvX96OzC8CVcoWEkqhckTg8X7f4)
 - [IRGAN](https://arxiv.org/pdf/1705.10513.pdf)
-- EASE(https://arxiv.org/pdf/1905.03375.pdf)
-- VAE(https://arxiv.org/pdf/1802.05814)
-- DAE(https://arxiv.org/pdf/1802.05814)
+- [EASE](https://arxiv.org/pdf/1905.03375.pdf)
+- [VAE](https://arxiv.org/pdf/1802.05814)
+- [DAE](https://arxiv.org/pdf/1802.05814)
 
 
 ## TO DO:
