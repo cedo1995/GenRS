@@ -19,7 +19,7 @@ A generative learning-based Framework for Recommendation Systems algorithms
 
 ## TO DO:
 ### Download datasets you want
-- Check which dataset you want to use from Google Drive folder shorturl.at/oqBM4
+- Check which dataset you want to use from [here](shorturl.at/oqBM4)
 - Download and extract the preferred into repository project folder
 
 ### Set the framework configuration in Data/cfg.JSON
