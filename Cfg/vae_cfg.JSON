@@ -1,0 +1,16 @@
+{
+  "use_gpu" : true,
+  "batch_size" : 500,
+  "batch_size_val" : 2000,
+  "batch_size_test" : 2000,
+  "tot_anneal_steps" : 200000,
+  "anneal_cap" : 0.2,
+  "input_p": 200,
+  "hid_p" : 600,
+  "keep_prob_ph": 0.5,
+  "is_training_ph": 1,
+  "lambda" : 0.00,
+  "lr" : 0.001,
+  "n_epochs": 200,
+  "random_seed" : 98765
+}

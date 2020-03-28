@@ -1,0 +1,18 @@
+{
+  "seed" : 123456789,
+  "out_log": "./../console.log.txt",
+  "min_rat": 4,
+  "min_uc" : 5,
+  "min_sc" : 0,
+  "heldout_us_val" : 100,
+  "heldout_us_test" : 100,
+  "test_it_prop" : 0.6,
+  "algos": ["vae", "dae"],
+  "names": ["user_id","item_id","rating"],
+  "path" : "./../Dataset/Ml-100k/data.csv",
+  "sep": "\t",
+  "preproc_data": true,
+  "create_tr_val_test": true,
+  "write_set": false,
+  "metrics" : ["precision@5", "precision@20", "precision@50", "precision@100", "recall@5", "recall@20", "recall@50", "recall@100", "ndcg@5", "ndcg@20", "ndcg@50", "ndcg@100", "ap@5", "ap@10", "ap@20", "ap@50", "ap@100", "auc"]
+}
