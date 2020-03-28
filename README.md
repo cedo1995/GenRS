@@ -18,7 +18,6 @@ A generative learning-based Framework for Recommendation Systems algorithms
 
 
 ## TO DO:
-### Download datasets you want
 - Check which dataset you want to use from [here](https://drive.google.com/drive/u/2/folders/1mX0QMJ8kHTlU-ziK95SWvZb0ehjl5FWb)
 - Download and extract the preferred into repository project folder
 
