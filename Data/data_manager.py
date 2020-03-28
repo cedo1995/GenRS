@@ -230,13 +230,13 @@ class DataManager:
 
         sp_matr_list = []
         for i in range(len(path_files)):
-            sp_matr_list += self.load_sp_matr(path_files[i], self.n_us, self.n_it)
+            sp_matr_list.append(self.load_sp_matr(path_files[i], self.n_us, self.n_it))
         self.tr_matr, self.val_tr_matr, self.val_te_matr, self.test_tr_matr, self.test_te_matr = sp_matr_list
 
         # create the dictionaries starting from the sparse matrices
         dict_list = []
         for i in range(len(sp_matr_list)):
-            dict_list += self.make_dict(sp_matr_list[i])
+            dict_list.append(self.make_dict(sp_matr_list[i]))
 
         self.tr_dict, self.val_tr_dict, self.val_te_dict, self.test_tr_dict, self.test_te_dict = dict_list
         # in case of no validation process, whole_tr= tr + entire val + test_tr
@@ -302,20 +302,21 @@ class DataManager:
         assert isinstance(heldout_us_val, int), "Error in Framework configuration.\n " \
                                                 "The heldout_us_val parameter in cfg.JSON" \
                                                 " must be an integer greater than 0."
-        assert (heldout_us_val > int(0.5 * n_us)), "Error in Framework configuration.\n" \
+        assert (heldout_us_val <= int(0.5 * n_us)), "Error in Framework configuration.\n" \
+        assert (heldout_us_val <= int(0.5 * n_us)), "Error in Framework configuration.\n" \
                                                    "The heldout_us_val parameter in cfg.JSON" \
                                                    "is too much high. Reduce it"
-        assert (heldout_us_val < 0), "Error in Framework configuration.\n " \
+        assert (heldout_us_val > 0), "Error in Framework configuration.\n " \
                                                 "The heldout_us_val parameter in cfg.JSON" \
                                                 " must be an integer greater than 0."
 
         assert isinstance(heldout_us_test, int), "Error in Framework configuration.\n " \
                                                 "The heldout_us_test parameter in cfg.JSON" \
                                                 " must be an integer greater than 0."
-        assert (heldout_us_test > int(0.5 * n_us)), "Error in Framework configuration.\n" \
+        assert (heldout_us_test <= int(0.5 * n_us)), "Error in Framework configuration.\n" \
                                                    "The heldout_us_test parameter in cfg.JSON" \
                                                    "is too much high. Reduce it"
-        assert (heldout_us_test < 0), "Error in Framework configuration.\n " \
+        assert (heldout_us_test > 0), "Error in Framework configuration.\n " \
                                      "The heldout_us_val parameter in cfg.JSON" \
                                      " must be an integer greater than 0."
 

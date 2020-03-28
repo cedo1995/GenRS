@@ -1,4 +1,6 @@
-from Main.rec_sys import RecSys
+import sys
+sys.path.append("..")
+from rec_sys import RecSys
 
 
 def main():
