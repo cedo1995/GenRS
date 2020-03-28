@@ -302,7 +302,7 @@ class DataManager:
         assert isinstance(heldout_us_val, int), "Error in Framework configuration.\n " \
                                                 "The heldout_us_val parameter in cfg.JSON" \
                                                 " must be an integer greater than 0."
-        assert (heldout_us_val <= int(0.5 * n_us)), "Error in Framework configuration.\n" \
+
         assert (heldout_us_val <= int(0.5 * n_us)), "Error in Framework configuration.\n" \
                                                    "The heldout_us_val parameter in cfg.JSON" \
                                                    "is too much high. Reduce it"
