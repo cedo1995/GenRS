@@ -16,6 +16,7 @@ class Ease(Alg):
         del G
         B = P / (-np.diag(P))
         B[diag_ind] = 0
+
         return B
 
     def prediction(self, all_ratings):
@@ -23,4 +24,8 @@ class Ease(Alg):
         S = np.dot(X, all_ratings)
         S[X.nonzero()] = -np.inf
         S = S[self.data.test_te_us]
-        return S
+        c = [v[0] for v in S]
+        a = []
+        for i in range(len(self.data.test_te_us)):
+          a.append(np.array(c[i])[0])
+        return a
