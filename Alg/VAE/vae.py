@@ -6,7 +6,7 @@ from Alg.alg import Alg
 import numpy as np
 import bottleneck as bn
 import tensorflow as tf
-from tensorflow_core.contrib.layers.python.layers.regularizers import l2_regularizer, apply_regularization
+
 
 class Vae(Alg):
     def __init__(self, data, alg_cfg):
@@ -42,9 +42,9 @@ class Vae(Alg):
             log_softmax_var * self.input_ph,
             axis=-1))
         # apply regularization to weights
-        reg = l2_regularizer(self.lam)
+        reg = tf.contrib.layers.l2_regularizer(self.lam)
 
-        reg_var = apply_regularization(reg, self.weights_q + self.weights_p)
+        reg_var = tf.contrib.layers.apply_regularization(reg, self.weights_q + self.weights_p)
         # tensorflow l2 regularization multiply 0.5 to the l2 norm
         # multiply 2 so that it is back in the same scale
         neg_ELBO = neg_ll + self.anneal_ph * KL + 2 * reg_var
