@@ -6,7 +6,6 @@ from Alg.alg import Alg
 import numpy as np
 import bottleneck as bn
 import tensorflow as tf
-from tensorflow_core.contrib.layers.python.layers.regularizers import l2_regularizer, apply_regularization
 
 
 class Dae(Alg):
@@ -40,8 +39,8 @@ class Dae(Alg):
         neg_ll = -tf.reduce_mean(tf.reduce_sum(
             log_softmax_var * self.input_ph, axis=1))
         # apply regularization to weights
-        reg = l2_regularizer(self.lam)
-        reg_var = apply_regularization(reg, self.weights)
+        reg = tf.contrib.layers.l2_regularizer(self.lam)
+        reg_var = tf.contrib.layers.apply_regularization(reg, self.weights)
         # tensorflow l2 regularization multiply 0.5 to the l2 norm
         # multiply 2 so that it is back in the same scale
         loss = neg_ll + 2 * reg_var
