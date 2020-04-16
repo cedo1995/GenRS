@@ -238,7 +238,12 @@ class Dae(Alg):
             return entire_pred_matr
 
     def prediction(self, all_ratings):
-        return [all_ratings[u].toarray()[0] for u in range(all_ratings.shape[0])]
+        c = [all_ratings[u].toarray()[0] for u in range(all_ratings.shape[0])]
+        # Preprocess predicted data before evaluation phase
+        pred_ord = []
+        for j in range(len(c)):
+            pred_ord.append(self.sort_(c[j]))
+        return pred_ord
 
 
 

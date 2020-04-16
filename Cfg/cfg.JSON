@@ -7,7 +7,7 @@
   "heldout_us_val" : 100,
   "heldout_us_test" : 100,
   "test_it_prop" : 0.6,
-  "algos": ["vae", "dae"],
+  "algos": ["ease", "dae", "vae"],
   "names": ["user_id","item_id","rating"],
   "path" : "./../Dataset/Ml-100k/data.csv",
   "sep": "\t",

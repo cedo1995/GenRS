@@ -260,14 +260,18 @@ class Cfgan(Alg):
     def prediction(self, all_ratings):
         tr_matr = self.data.whole_tr_matr[self.data.test_te_us]
         all_ratings[tr_matr.nonzero()] = -np.inf
-        return all_ratings
+        # Preprocess predicted data before evaluation phase
+        pred_ord = []
+        for j in range(len(all_ratings)):
+            pred_ord.append(self.sort_(all_ratings[j]))
+        return pred_ord
 
 
 def FullyConnectedLayer(input, inputDim, outputDim, activation, model, layer, reuse=False):
     """
     :param input: placeholder with the choosen shape
     :param inputDim: shape of the input
-    :param outputDim:
+    :param outputDim: shape of the output
     :param activation: activation function (sigmoid)
     :param model: dis or gen
     :param layer: number of layer that is building

@@ -7,13 +7,14 @@ from time import time
 import numpy as np
 import pandas as pd
 from scipy import sparse
-from scipy.sparse import csr_matrix
 
 
 class Reader:
 
     def __init__(self, settings):
         """
+        Load and filter dataset
+        ------------
         :param settings: FrmCfg instance
         """
         logging.basicConfig(filename=settings.out_log)
@@ -35,6 +36,9 @@ class Reader:
 
     def filt_data(self, df, threshold=0, min_uc=0, min_sc=0):
         """
+        Filter Pandas DataFrame by rating threshold and minimum users and items.
+        Only user_id and item_id are maintained.
+        ------------
         :param df: pandas DataFrame that has to be filter
         :param threshold: minimum considered rating value in df
         :param min_uc: maintain only the user that rate at least min_uc items
@@ -48,6 +52,8 @@ class Reader:
     @staticmethod
     def load_data(data_path, sep=None, names=None, index_col=None):
         """
+        Load data from .csv file into a Pandas DataFrame
+        ------------
         :param data_path: path of dataset file
         :param sep: separator used in dataset file to split user item columns
         :param names: column names of the dataframe
@@ -71,6 +77,8 @@ class Reader:
     @staticmethod
     def filter_by_rat(df, threshold=3):
         """
+        Filter the DataFrame keeping in only ratings greater equal than threshold
+        ------------
         :param df: pandas DataFrame
         :param threshold: minimum considered value in df
         :return: the pandas DataFrame with filtered ratings
@@ -82,9 +90,10 @@ class Reader:
     @staticmethod
     def encode_user(user_e2i, x):
         """
-        This function is used to encoding the explicit value of users to the implicit
-        :param x: user that has to be mapped
+        Encode the explicit value of users to implicit ones
+        ------------
         :param user_e2i: dict used for user's encoding
+        :param x: user that has to be mapped
         :return us: encoded user
         """
         return user_e2i[x]
@@ -92,7 +101,8 @@ class Reader:
     @staticmethod
     def encode_item(item_e2i, i):
         """
-        This function is used to encoding the explicit value of items to the implicit
+        Encode the explicit value of items to implicit ones
+        ------------
         :param item_e2i: dict used for item's encoding
         :param i: item that has to be mapped
         :return it: encoded item
@@ -102,6 +112,8 @@ class Reader:
     @staticmethod
     def get_count(df, col_id):
         """
+        Count the unique ids in col_id of df
+        ------------
         :param df: encoded pandas Dataframe
         :param col_id: name of the column in df
         :return count: number of different values in col_id of df
@@ -112,10 +124,13 @@ class Reader:
 
     def filt_us_it(self, df, min_uc=0, min_sc=0):
         """
+        Filter DataFrame maintaining only users that rate at least min_uc items and items that has been rated by
+         at least min_sc users
+        ------------
         :param df: pandas DataFrame
         :param min_uc: maintain only the user that rate at least min_uc items
-        :param min_sc: maintain only the items that has been rated at least by min_sc user
-        :return df: the pandas DataFrame df after users and items filtering
+        :param min_sc: maintain only the items that has been rated at least by min_sc users
+        :return df: pandas DataFrame df after users and items filtering
         """
         col0, col1 = list(df)[:2]
         # Only keep the data for items which were clicked on by at least min_sc users.
@@ -133,6 +148,8 @@ class Reader:
 
     def apply_encoding(self, df, us_e2i, it_e2i):
         """
+        Build a dataframe with encoded values following us_e2i and it_e2i maps
+        ------------
         :param df: original pandas dataframe on which we want to apply the encoding
         :param us_e2i: map explicit user to implicit id
         :param it_e2i: map explicit item to implicit id
@@ -147,6 +164,8 @@ class Reader:
     @staticmethod
     def create_mapping(df):
         """
+        Build a map for users and items starting from 0
+        ------------
         :param df: DataFrame we want to map
         :param user_e2i: user dictionary that map each explicit id to an implicit
         :param item_e2i: item dictionary that map each explicit id to an implicit
@@ -169,7 +188,9 @@ class Reader:
     @staticmethod
     def write_filtered_data(df, f_path=None, sep=None, new_col_names=None):
         """
-        It takes the preprocessed df and write on file
+        It takes preprocessed DataFrame and save the first two columns on file
+        specified in f_path variable
+        ------------
         :param df: DataFrame to save
         :param f_path: string containing the path
         :param sep: separator of csv file
@@ -186,6 +207,8 @@ class Reader:
         if sep is None:
             sep = ','
         assert isinstance(sep, str), "The sep parameter must be a string."
+        if len(list(df)) > 2:
+            df = df[list(df)[0:2]]
 
         df.to_csv(f_path, header=new_col_names, sep=sep, index=False)
 
@@ -194,6 +217,7 @@ class DataManager:
 
     def __init__(self, data):
         """
+        Preprocess data in various set and build useful data structures such as sparse matrices and dictionaries
         :param data: a Reader instance
         """
         self.data = data
@@ -246,6 +270,9 @@ class DataManager:
 
         self.gt = self.test_te_dict
         self.gt_array = list(self.gt.values())
+        self.target = {}
+        for j in list(self.gt.keys()):
+            self.target[j] = set(self.gt[j])  # unordered: what matters is the presence of item index, not the position
 
     @staticmethod
     def load_sp_matr(path, m, n):
@@ -264,7 +291,7 @@ class DataManager:
     @staticmethod
     def make_dict(sp_matr):
         """
-        create dictionary from csr_matrix
+        Create dictionary from csr_matrix
         -----------
         :param sp_matr: sparse csr_matrix
         :return a dictionary with as key the rows and values the indices of items different from 0 in sp_matr

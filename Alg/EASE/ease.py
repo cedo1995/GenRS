@@ -27,5 +27,9 @@ class Ease(Alg):
         c = [v[0] for v in S]
         a = []
         for i in range(len(self.data.test_te_us)):
-          a.append(np.array(c[i])[0])
-        return a
+            a.append(np.array(c[i])[0])
+        # Preprocess predicted data before evaluation phase
+        pred_ord = []
+        for j in range(len(a)):
+            pred_ord.append(self.sort_(a[j]))
+        return pred_ord

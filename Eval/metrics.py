@@ -8,6 +8,8 @@ import numpy as np
 class Metrics:
     def __init__(self, metrics, gt, pred):
         """
+        Compute the values of metrics using gt and pred values
+        ------------
         :param metrics: list of metrics
         :param gt: set list of indices of real users preferences
         :param pred: array-list of indices (predicted values) returned by algorithm
@@ -18,6 +20,7 @@ class Metrics:
     def compute_metrics(self, metrics, gt, pred):
         """
         Returns a defaultdict in the form <metr_name: value> containing all metrics
+        ------------
         :param metrics: list of metrics
         :param gt: set list of indices of real users preferences
         :param pred: array-list of indices (predicted values) returned by algorithm

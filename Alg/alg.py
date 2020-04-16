@@ -5,6 +5,10 @@ import numpy as np
 class Alg:
 
     def __init__(self, data):
+        """
+        Superclass of algorithms
+        @param data: DataManager instance, it contains all the useful data structure
+        """
         self.data = data
 
     def execute_training(self):
@@ -30,7 +34,7 @@ class Alg:
 
     def load_training(self):
         pass
-    
+
     @staticmethod
     def sort_(unsort_list, dec=True):
         """
@@ -43,4 +47,3 @@ class Alg:
         """
         d = {k: unsort_list[k] for k in range(len(unsort_list))}
         return sorted(d.keys(), key=lambda s: d[s], reverse=dec)
-    

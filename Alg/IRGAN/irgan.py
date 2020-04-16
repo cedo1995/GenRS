@@ -240,7 +240,11 @@ class Irgan(Alg):
     def prediction(self, all_ratings):
         tr_matr = self.data.whole_tr_matr[self.data.test_te_us]
         all_ratings[tr_matr.nonzero()] = -np.inf
-        return all_ratings
+        # Preprocess predicted data before evaluation phase
+        pred_ord = []
+        for j in range(len(all_ratings)):
+            pred_ord.append(self.sort_(all_ratings[j]))
+        return pred_ord
 
     def generate_for_d(self, sess, model, filename):
         data = []
